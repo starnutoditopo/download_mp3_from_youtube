@@ -8,9 +8,17 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "/workspaces/PythonYoutubeDownloader/YoutubeDownloader.py",
+            "program": "${workspaceFolder}/YoutubeDownloader.py",
+            "args": [
+                "-i",
+                "./my_play_list.txt",
+                "-o",
+                "./output"
+            ],
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+            "python": "/usr/local/bin/python"
         }
     ]
 }
