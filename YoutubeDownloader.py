@@ -2,6 +2,7 @@
 
 from pytube import YouTube
 import sys, getopt
+from functools import reduce
 
 def Download(link, output_path):
     saved_file = None
@@ -33,12 +34,13 @@ def main(argv):
 
     with open(inputfile, 'r', encoding="UTF-8") as file:
         lines = file.readlines()
-        for line in lines:
-            link = line.strip()
-            if len(link) == 0 or link.startswith('#'):
-                continue
-            print(f'Downloading {link}...')
-            saved_file = Download(link, output_directory)
+        lines = [line.strip() for line in lines]
+        filtered_lines = filter(lambda line: (len(line)>0) and (not line.startswith('#')), lines)
+        distinct_lines = reduce(lambda x, y: x + [y] if y not in x else x, filtered_lines, [])
+
+        for line in distinct_lines:
+            print(f'Downloading {line}...')
+            saved_file = Download(line, output_directory)
             print(f'   ... done ({saved_file}).')
 
 if __name__ == '__main__':
