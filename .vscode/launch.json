@@ -8,12 +8,14 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/YoutubeDownloader.py",
+            "program": "${workspaceFolder}/download_mp3_from_youtube.py",
             "args": [
                 "-i",
                 "./my_play_list.txt",
                 "-o",
-                "./output"
+                "./output",
+                "-t",
+                "./temp"
             ],
             "console": "integratedTerminal",
             "justMyCode": true,
