@@ -5,12 +5,12 @@
 import os
 import sys
 import getopt
+import tempfile
 from functools import reduce
 from pytube import YouTube
 from moviepy.editor import AudioFileClip
 
-
-def convert_to_mp3(input_file, output_directory):
+def convert_to_mp3(input_file, output_directory):    
     "Convert a media file to mp3."
     _, file_name = os.path.split(input_file)
 
@@ -60,7 +60,7 @@ def main(argv):
     opts, _ = getopt.getopt(argv, "hi:o:t:", ["ifile=", "odir=", "tdir="])
     for opt, arg in opts:
         if opt == "-h":
-            print("download_mp3_from_youtube.py -i <inputfile> -o <output_directory>")
+            print("download_mp3_from_youtube.py -i <inputfile> -o <output_directory> -t <temporary_directory>")
             sys.exit()
         elif opt in ("-i", "--ifile"):
             inputfile = arg
@@ -68,6 +68,10 @@ def main(argv):
             output_directory = arg
         elif opt in ("-t", "--tdir"):
             temporary_directory = arg
+
+    if temporary_directory == "":
+        temporary_directory = tempfile.gettempdir()
+
     print("Input file is: ", inputfile)
     print("Output directory is: ", output_directory)
     print("Temporary directory is: ", temporary_directory)

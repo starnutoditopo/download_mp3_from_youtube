@@ -13,9 +13,7 @@
                 "-i",
                 "./my_play_list.txt",
                 "-o",
-                "./output",
-                "-t",
-                "./temp"
+                "./output"
             ],
             "console": "integratedTerminal",
             "justMyCode": true,
