@@ -60,7 +60,7 @@ def main(argv):
     opts, _ = getopt.getopt(argv, "hi:o:t:", ["ifile=", "odir=", "tdir="])
     for opt, arg in opts:
         if opt == "-h":
-            print("test.py -i <inputfile> -o <output_directory>")
+            print("download_mp3_from_youtube.py -i <inputfile> -o <output_directory>")
             sys.exit()
         elif opt in ("-i", "--ifile"):
             inputfile = arg
