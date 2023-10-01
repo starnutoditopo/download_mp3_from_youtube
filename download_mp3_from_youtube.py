@@ -47,8 +47,6 @@ def download_and_convert(link, temporary_path, output_path):
 
     saved_file = convert_to_mp3(temporary_file, output_path)
     os.remove(temporary_file)
-
-    print("   Download is completed successfully")
     return saved_file
 
 
@@ -96,8 +94,8 @@ def main(argv):
             )
             if saved_file is None:
                 print("   ... error while saving file.")
-            else:
-                print(f"   ... done ({saved_file}).")
+            #else:
+            #    print(f"   ... done ({saved_file}).")
 
 
 if __name__ == "__main__":
