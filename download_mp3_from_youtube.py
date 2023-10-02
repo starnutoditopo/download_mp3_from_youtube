@@ -28,22 +28,19 @@ def download_and_convert(link, temporary_path, output_path):
     Download the music at the specified link, convert it to mp3 format
       and save it to the specified output path.
     """
-    try:
-        youtube_object = YouTube(link)
-        # title = youtube_object.title
-        youtube_stream = (
-            youtube_object.streams.filter(only_audio=True)
-            .order_by("abr")
-            .desc()
-            .first()
-        )
+    # try:
+    youtube_object = YouTube(link)
+    # title = youtube_object.title
+    youtube_stream = (
+        youtube_object.streams.filter(only_audio=True).order_by("abr").desc().first()
+    )
 
-        temporary_file = youtube_stream.download(
-            output_path=temporary_path, filename=youtube_stream.default_filename
-        )
-    except Exception:
-        print("   An error has occurred while downloading the file from YouTube")
-        return None
+    temporary_file = youtube_stream.download(
+        output_path=temporary_path, filename=youtube_stream.default_filename
+    )
+    # except Exception:
+    #    print("   An error has occurred while downloading the file from YouTube")
+    #    return None
 
     saved_file = convert_to_mp3(temporary_file, output_path)
     os.remove(temporary_file)
@@ -60,7 +57,10 @@ def main(argv):
     for opt, arg in opts:
         if opt == "-h":
             print(
-                "download_mp3_from_youtube.py -i <inputfile> -o <output_directory> -t <temporary_directory>"
+                "download_mp3_from_youtube.py "
+                + "-i <inputfile> "
+                + "-o <output_directory> "
+                + "-t <temporary_directory> "
             )
             sys.exit()
         elif opt in ("-i", "--ifile"):
@@ -94,7 +94,7 @@ def main(argv):
             )
             if saved_file is None:
                 print("   ... error while saving file.")
-            #else:
+            # else:
             #    print(f"   ... done ({saved_file}).")
 
 
