@@ -10,11 +10,11 @@ RUN rm ./requirements.txt
 
 COPY ./download_mp3_from_youtube.py .
 
-#CMD python ./download_mp3_from_youtube.py
+ENTRYPOINT ["python", "./download_mp3_from_youtube.py"]
 
 
 # Build:
 # 	docker build -t download_mp3_from_youtube -f ./Dockerfile .
 #
 # Run:
-#	docker run -it --rm -v ${PWD}:/input -v ${home}/music:/output download_mp3_from_youtube python /app/download_mp3_from_youtube.py -i /input/my_play_list.txt -o /output
+#	docker run -it --rm -v ${PWD}:/input -v ${home}/music:/output download_mp3_from_youtube -i /input/my_play_list.txt -o /output
